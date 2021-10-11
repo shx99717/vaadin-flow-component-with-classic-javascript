@@ -5,5 +5,5 @@
     <artifactId>vaadin-flow-component-with-classic-javascript</artifactId>
     <version>1.0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>dummy-component-demo</artifactId>
+  <artifactId>vaadin-flow-component-with-classic-javascript-dummy-component-demo</artifactId>
 </project>

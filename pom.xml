@@ -7,8 +7,8 @@
 	<version>1.0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>dummy-component</module>
-		<module>dummy-component-demo</module>
+		<module>vaadin-flow-component-with-classic-javascript-dummy-component</module>
+		<module>vaadin-flow-component-with-classic-javascript-dummy-component-demo</module>
 	</modules>
 
 
