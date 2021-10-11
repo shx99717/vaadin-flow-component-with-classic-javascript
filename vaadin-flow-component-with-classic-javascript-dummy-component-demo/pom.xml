@@ -111,6 +111,68 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+			<!-- 
+				In order to make own-made classic javascript work with Vaadin Flow, these javascript files must
+				be put under webapp folder where only exists for 'war' type of project, but the referenced component should
+				be an 'jar' typed artifact, which does not exist such 'webapp' folder at, therefore we use the following way to
+				copy the needed javascript files to the 'webapp' folder of the referencing project(war), by doing so, the component
+				with classic javascript can still be a self-contained component
+			-->
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack-dummy-component</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.shx99717</groupId>
+									<artifactId>vaadin-flow-component-with-classic-javascript-dummy-component</artifactId>
+									<version>${project.version}</version>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+									<outputDirectory>${project.build.directory}/dummy-component</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-as-webapp-js</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}</outputDirectory>
+							<overwrite>false</overwrite>
+							<includeEmptyDirs>true</includeEmptyDirs>
+							<resources>
+								<resource>
+									<directory>${project.build.directory}/dummy-component</directory>
+									<filtering>false</filtering>
+									<includes>
+										<include>**/*.js</include>
+									</includes>
+									<excludes>
+					    		 	     <exclude>META-INF/**</exclude>
+							        </excludes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
