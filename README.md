@@ -11,3 +11,7 @@ run the project under sub-module `vaadin-flow-component-with-classic-javascript-
 mvn clean package tomee:run
 ```
 
+and visit `http://localhost:8080/dummy_demo`
+
+This project has already bundled with maven wrapper, even you do not have maven installed, you can run it with `mvnw` at root or `../mvnw` at a sub module
+
