@@ -17,11 +17,9 @@ public class DummyDemo extends VerticalLayout {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DummyDemo.class);
 
 	@Inject
-	private DummyComponent dummyComponent;
-
-	public DummyDemo() {
-		dummyComponent = new DummyComponent();
-		LOGGER.info("Hello here " + dummyComponent);
+	public DummyDemo(DummyComponent dummyComponent) {
+		LOGGER.info("Hello " + dummyComponent + ", it is using constructor injection");
 		add(dummyComponent);
 	}
+
 }
